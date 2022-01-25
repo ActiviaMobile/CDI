@@ -2,7 +2,7 @@
     "name": "my-app",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://Meinuel.github.io/Homologaciones",
+    "homepage": "https://Meinuel.github.io/homologaciones",
     "dependencies": {
         "-": "0.0.1",
         "@testing-library/jest-dom": "^5.16.1",
