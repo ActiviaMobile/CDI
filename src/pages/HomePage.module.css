@@ -1,0 +1,10 @@
+.page {
+    height: 100vh;
+    background-color: rgba(125, 177, 250, 0.782);
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
     <SessionProvider>
-      <BrowserRouter>
-        <HomePage/>
-      </BrowserRouter>
+    <BrowserRouter>
+      <HomePage/>
+    </BrowserRouter>
     </SessionProvider>
     </div>
   );
