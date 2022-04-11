@@ -1,0 +1,11 @@
+.menuItem {
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    color: white;
+}
+
+.menuItem:hover {
+    background-color: rgb(9, 123, 189);
+    ;
+}

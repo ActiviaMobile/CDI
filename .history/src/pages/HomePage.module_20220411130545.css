@@ -1,0 +1,9 @@
+.page {
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reactLogo {
+    height: 20%;
+}

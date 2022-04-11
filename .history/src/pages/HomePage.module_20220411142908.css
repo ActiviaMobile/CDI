@@ -1,0 +1,13 @@
+.pageRow {
+    height: 100vh;
+    display: flex;
+}
+
+.pageColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.reactLogo {
+    height: 20%;
+}

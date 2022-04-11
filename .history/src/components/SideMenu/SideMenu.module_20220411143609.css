@@ -1,0 +1,9 @@
+.menuContainer {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: rgb(27, 138, 202);
+    color: white;
+}

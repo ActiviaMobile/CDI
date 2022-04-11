@@ -1,0 +1,9 @@
+.menuContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 10%;
+    margin-left: 5%;
+    border: 1px solid;
+    border-radius: 5px;
+}
