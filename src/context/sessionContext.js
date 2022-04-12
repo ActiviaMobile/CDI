@@ -6,7 +6,7 @@ const SessionProvider = ({children})=>{
     const [user, setUser] = useState({})
 
     const updateUser = (userData) => {
-        sessionStorage.setItem('user',JSON.stringify(userData))
+        localStorage.setItem('user',JSON.stringify(userData))
         setUser(userData)
     }
     const data = {

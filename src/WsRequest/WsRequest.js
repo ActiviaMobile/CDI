@@ -1,5 +1,5 @@
 
-export const getTokenRequest = async (handleRsp,handleError,passport) => {
+export const getTokenRequest = async (handleRsp,handleError,passport,setToken) => {
     var XMLParser = require('react-xml-parser');
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open('POST', 'http://172.16.1.6:8088/', true);
@@ -19,9 +19,9 @@ export const getTokenRequest = async (handleRsp,handleError,passport) => {
             if (xmlhttp.status === 200) {
                 var xml = new XMLParser().parseFromString(xmlhttp.responseText);
                 var rsp = xml.getElementsByTagName('tokenUsuarioGetResult');
-                wsRequest(handleRsp,rsp[0].value,'UsuarioGetAll')
+                wsRequest(handleRsp,handleError,rsp[0].value,'UsuarioGetAll')
             } else if (xmlhttp.status === 500) {
-                handleRsp('')
+                handleError()
             }
         }
     }
@@ -36,7 +36,7 @@ export const wsRequest = (handleRsp, handleError ,token, method, id) => {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open('POST', 'http://172.16.1.6:8088/', true);
     // build SOAP request
-    var sr =
+    var sr = !id ? 
         '<?xml version="1.0" encoding="utf-8"?>' +
         '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
         '<soap:Body>' +
@@ -44,16 +44,25 @@ export const wsRequest = (handleRsp, handleError ,token, method, id) => {
         `<tokenUsuario>${token}</tokenUsuario>` +
         `</${method}>` +
         '</soap:Body>' +
-        '</soap:Envelope>';
+        '</soap:Envelope>' :
+
+        '<?xml version="1.0" encoding="utf-8"?>' +
+        '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
+        '<soap:Body>' +
+        `<${method} xmlns="http://HomologacionWebsiteServices.activia.com.ar/">` +
+        `<tokenUsuario>${token}</tokenUsuario>` +
+        `</${method}>` +
+        `<id>${id}</id>` +
+        '</soap:Body>' +
+        '</soap:Envelope>'
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4) {  
             if (xmlhttp.status === 200) {
                 var xml = new XMLParser().parseFromString(xmlhttp.responseText);
                 var res = xml.getElementsByTagName(`${method}Result`);
-                handleRsp(res[0].value)
-
+                handleRsp(res[0].value , token)
             } else if (xmlhttp.status === 500) {
-                handleError('')
+                handleError()
             }
         }
     }
