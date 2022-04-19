@@ -1,0 +1,25 @@
+.menuContainer {
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    border: 1px solid;
+    background-color: rgb(27, 138, 202);
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.logo {
+    height: 10vh;
+    width: 10vh;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+
+/* @media (max-width: 1080px) {
+    .menuContainer {
+        width: 50vw;
+    }
+} */

@@ -1,0 +1,16 @@
+.menuItem {
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    color: white;
+    width: 99%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.menuItem:hover {
+    background-color: rgb(9, 123, 189);
+    border-radius: 15px;
+}
