@@ -1,4 +1,4 @@
-import { SideMenu , Main , Header , Button } from "../components/index";
+import { SideMenu , Main , Header } from "../components/index";
 import styles from "./HomePage.module.css";
 
 const DashboardPage = ({user}) => {

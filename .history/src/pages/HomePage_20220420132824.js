@@ -5,7 +5,7 @@ import { getTokenRequest, wsRequest } from "../WsRequest/WsRequest";
 import { SessionContext } from '../context/sessionContext';
 import styles from "./HomePage.module.css";
 import redirectToConsole from "../functions/Redirect";
-import DashboardPage from "./DashboardPage";
+import {DashboardPage} from "./index";
 
 const HomePage = () => {
 
@@ -27,18 +27,14 @@ const HomePage = () => {
         setHasError(true)
     }
 
-    const handleRef = (isLoading) => {
-        console.log(isLoading ? `isLoading : ${isLoading} Inicio progreso` : `isLoading : ${isLoading} Termino proceso` )
-        isLoading ? ref.current.continuousStart() : ref.current.complete();
-    }
+    const handleRef = (isLoading) => isLoading ? ref.current.continuousStart() : ref.current.complete();
 
     useEffect(() => {
-        handleRef(true)
         const userData = localStorage.getItem('user');
         if(userData){   
             console.log('hay user')
             const json = JSON.parse(userData);
-            wsRequest(handleRef,handleRsp,handleError,json['TokenGuid'],'UsuarioGetByToken')
+            wsRequest(handleRef,handleRsp,handleError,{'tokenUsuario' : json['TokenGuid']},'UsuarioGetByToken')
         }else{
             passport ?
                 getTokenRequest(handleRsp,handleError,passport) :
@@ -49,7 +45,7 @@ const HomePage = () => {
 return(
     <>
         {user ? <DashboardPage user={user}/> : 
-            !hasError ? <div className={styles.center}>Accediendo al centro de integraciones, un momento ...<LoadingBar color="blue" ref={ref}/></div> : <Navigate to={"/error"}/>
+            !hasError ? <div className={styles.center}>Accediendo al centro de integraciones...<LoadingBar color="blue" ref={ref}/></div> : <Navigate to={"/error"}/>
         }
     </>
 )
