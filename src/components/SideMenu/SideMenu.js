@@ -8,7 +8,7 @@ export default function SideMenu(){
     return(
         <div className={styles.menuContainer}>
             <img alt="" src={logo} className={styles.logo}/>
-            {items.map(({title,route,id} , i) => <SideMenuItem title={title} route={route} id={id}/>)}
+            {items.map(({title,route,id} , i) => <SideMenuItem title={title} route={route} id={id} key={id}/>)}
         </div>
     )
 }

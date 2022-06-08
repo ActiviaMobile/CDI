@@ -12,28 +12,28 @@ const HomePage = () => {
     const {updateUser, user} = useContext(SessionContext);
     const [hasError, setHasError] = useState(false);
     const passport = searchParams.get('passport')
-    console.log('Home')
 
     const handleError = () => setHasError(true)
 
     const handleRsp = (res , token) => {
         const json = JSON.parse(res);
-        console.log(json)
         updateUser(json)
     }
 
     const handleRef = () => {}
 
     useEffect(() => {
-        console.log('useEffect home')
+        localStorage.clear()
         const userData = localStorage.getItem('user');
         if(userData){   
             console.log('hay user')
             const json = JSON.parse(userData);
+            console.log('user : ' , userData)
             wsRequest(handleRef,handleRsp,handleError,{'tokenUsuario' : json['TokenGuid']},'UsuarioGetByToken')
         }else{
+            console.log('pido token')
             passport ?
-                getTokenRequest(handleRsp,handleError,passport) :
+                getTokenRequest(handleRef,handleRsp,handleError,passport) :
                 redirectToConsole();
         }
     },[passport])

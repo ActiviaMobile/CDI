@@ -1,5 +1,5 @@
 
-export const getTokenRequest = async (handleRsp,handleError,passport,setToken) => {
+export const getTokenRequest = async (handleRef , handleRsp,handleError,passport,setToken) => {
     console.log('preparando conexion')
     var XMLParser = require('react-xml-parser');
     var xmlhttp = new XMLHttpRequest();
@@ -14,7 +14,7 @@ export const getTokenRequest = async (handleRsp,handleError,passport,setToken) =
         '</tokenUsuarioGet>' +
         '</soap:Body>' +
         '</soap:Envelope>';
-
+    console.log(sr)
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4) {
             console.log('conexion terminada')
@@ -22,7 +22,7 @@ export const getTokenRequest = async (handleRsp,handleError,passport,setToken) =
             if (xmlhttp.status === 200) {
                 var xml = new XMLParser().parseFromString(xmlhttp.responseText);
                 var rsp = xml.getElementsByTagName('tokenUsuarioGetResult');
-                wsRequest(handleRsp,handleError,rsp[0].value,'UsuarioGetByToken')
+                wsRequest(handleRef,handleRsp,handleError,{'tokenUsuario' : rsp[0].value},'UsuarioGetByToken')
             } else if (xmlhttp.status === 500) {
                 console.log('error')
                 handleError()
@@ -38,6 +38,7 @@ export const getTokenRequest = async (handleRsp,handleError,passport,setToken) =
 }
 
 export const wsRequest = (handleRef,handleRsp, handleError ,parameters, method) => {
+    console.log('token y method' , parameters)
     handleRef(true)
     var xmlTag = ''
     Object.keys(parameters).map(key => xmlTag += `<${key}>` + parameters[key]+ `</${key}>`)
@@ -55,7 +56,7 @@ export const wsRequest = (handleRef,handleRsp, handleError ,parameters, method) 
         `</${method}>` +
         '</soap:Body>' +
         '</soap:Envelope>'
-
+    console.log(sr)
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4) {  
             if (xmlhttp.status === 200) {
@@ -65,6 +66,7 @@ export const wsRequest = (handleRef,handleRsp, handleError ,parameters, method) 
                 console.log(res[0].value)
                 handleRsp(res[0].value)
             } else {
+                console.log('error')
                 handleError()
             }
         }

@@ -4,7 +4,6 @@ import styles from "../../pages/HomePage/HomePage.module.css";
 
 const Dashboard = ({display}) => {
     // const [display , setDisplay] = useState(null)
-    useEffect( () => console.log('display : ', display) )
     return (
         <div className={styles.pageRow}>
             <SideMenu />
