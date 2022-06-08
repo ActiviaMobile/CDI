@@ -3,9 +3,8 @@ import styles from "./Main.module.css"
 import {displayOptions} from "../../utils/MenuOptions";
 
 export default function Main({display}){
-    console.log('idComponent',display)
     const item = displayOptions().find(item => item.id === display );
-    useEffect(() => console.log('display main : ' ,display))
+    useEffect(() => console.log('display main : ' , display))
     return(
         <div className={styles.main}>
             {item.component}

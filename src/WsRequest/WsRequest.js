@@ -38,7 +38,6 @@ export const getTokenRequest = async (handleRef , handleRsp,handleError,passport
 }
 
 export const wsRequest = (handleRef,handleRsp, handleError ,parameters, method) => {
-    console.log('token y method' , parameters)
     handleRef(true)
     var xmlTag = ''
     Object.keys(parameters).map(key => xmlTag += `<${key}>` + parameters[key]+ `</${key}>`)

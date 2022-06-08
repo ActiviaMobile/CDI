@@ -7,7 +7,7 @@ import ReferenteItem from "../../components/ReferenteItem/ReferenteItem"
 const ShowReferentes = () => {
     const [referentes , setReferentes] = useState()
     const {user} = useContext(SessionContext)
-    //wsRequest(handleRef,handleRsp,handleError,{'tokenUsuario' : user['TokenGuid']},'ReferenteGetAll')
+
     useEffect(() => !referentes && wsRequest(handleRef,handleRsp,handleError,{'tokenUsuario' : user['TokenGuid']},'ReferenteGetAll'))
 
     const handleRef = (prop) => {}
