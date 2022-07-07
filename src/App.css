@@ -1,38 +1,35 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@font-face {
+    font-family: 'gl';
+    src:url('../public/fontcdi/gl.woff') format('woff'),
+          url('../public/fontcdi/gl.woff2') format('woff2'),
+          url('../public/fontcdi/gl.svg#gl') format('svg'),
+          url('../public/fontcdi/gl.eot'),
+          url('../public/fontcdi/gl.eot?#iefix') format('embedded-opentype'),
+          url('../public/fontcdi/gl.ttf') format('truetype');
+  
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  @font-face {
+    font-family: 'gl';
+    src:url('../public/fontcdi/gb.woff') format('woff'),
+          url('../public/fontcdi/gb.woff2') format('woff2'),
+          url('../public/fontcdi/gb.svg#gb') format('svg'),
+          url('../public/fontcdi/gb.eot'),
+          url('../public/fontcdi/gb.eot?#iefix') format('embedded-opentype'),
+          url('../public/fontcdi/gb.ttf') format('truetype');
+  
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
   }
-  to {
-    transform: rotate(360deg);
+  
+  body {
+      font-family: 'gl';
   }
-}
+
+  *{
+      font-family: inherit;
+  }

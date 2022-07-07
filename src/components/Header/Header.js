@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { SessionContext } from '../../context/sessionContext'
-import LogoCDI from '../SvgComponents/LogoCDI'
+import LogoActivia from '../SvgComponents/LogoActivia'
+import HorizontalShadow from "../SvgComponents/HorizontalShadow"
 import styles from './Header.module.css'
 
 export default function Header(){
@@ -8,9 +9,9 @@ export default function Header(){
     const {user} = useContext(SessionContext)
 
     return(
-        <div className={styles.container}>
-            <h1>{user.Nombre}</h1>
-            <LogoCDI className={styles.logo}/>
+        <div className={styles.container}>      
+                <label id={styles.label}>CENTRO DE INTEGRACIONES</label>
+                <LogoActivia id={styles.logo}/>
         </div>
     )
 }

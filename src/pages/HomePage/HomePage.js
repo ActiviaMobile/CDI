@@ -1,49 +1,58 @@
-import { useEffect,useContext , useState , useRef} from "react";
-import { useSearchParams , Navigate} from "react-router-dom";
+import { useEffect,useContext , useState } from "react";
+import { useSearchParams , Navigate } from "react-router-dom";
 import { getTokenRequest, wsRequest } from "../../WsRequest/WsRequest";
 import { SessionContext } from '../../context/sessionContext';
 import styles from "./HomePage.module.css";
 import redirectToConsole from "../../functions/Redirect";
-import { Dashboard } from "../../components/index";
 
 const HomePage = () => {
 
     const [searchParams] = useSearchParams();
-    const {updateUser, user} = useContext(SessionContext);
+    const {updateUser, setSoftwareData,user} = useContext(SessionContext);
     const [hasError, setHasError] = useState(false);
+    const [hasSoftware , setHasSoftware] = useState(false)
+    const [isLoading , setIsLoading] = useState(true)
     const passport = searchParams.get('passport')
 
     const handleError = () => setHasError(true)
 
-    const handleRsp = (res , token) => {
-        const json = JSON.parse(res);
-        updateUser(json)
+    const handleRsp = (res) => {
+        console.log(res)
+        updateUser(JSON.parse(res))}
+    
+    const handleSoft = (res) => {
+        const json = JSON.parse(res)
+        console.log(json)
+        setHasSoftware(json.length > 0)
+        setSoftwareData(json)
+        setIsLoading(false)
     }
-
-    const handleRef = () => {}
 
     useEffect(() => {
         localStorage.clear()
-        const userData = localStorage.getItem('user');
-        if(userData){   
-            console.log('hay user')
-            const json = JSON.parse(userData);
-            console.log('user : ' , userData)
-            wsRequest(handleRef,handleRsp,handleError,{'tokenUsuario' : json['TokenGuid']},'UsuarioGetByToken')
-        }else{
-            console.log('pido token')
+        const userData = JSON.parse(localStorage.getItem('user'));
+        userData ?
+            wsRequest(handleRsp,handleError,{'tokenUsuario' : userData['TokenGuid']},'UsuarioGetByToken') :
             passport ?
-                getTokenRequest(handleRef,handleRsp,handleError,passport) :
+                getTokenRequest(handleRsp,handleError,passport) :
                 redirectToConsole();
-        }
     },[passport])
 
-return(
-    <>
-        {user ? <Dashboard display={0}/> : 
-            !hasError ? <div className={styles.center}>Accediendo al centro de integraciones...</div> : <Navigate to={"/error"}/>
-        }
-    </>
-)
+    useEffect(() => {
+        user && wsRequest(handleSoft,handleError,{'tokenUsuario' : user['TokenGuid']},'SoftwareGetAll')
+    } , [user])
+
+    return(
+        <>
+        {isLoading ? <div className={styles.center}>Accediendo al centro de integraciones...</div> : 
+            hasError ? <Navigate to={"/error"}/> : 
+                hasSoftware ? <Navigate to={"/perfil"}/> : <Navigate to={"/SignUp"}/>}
+        </>
+        // <>
+        //     {user ? hasSoftware ? <Navigate to="/main"/> : <Navigate to="/SignUp" /> : 
+        //         !hasError ? <div className={styles.center}>Accediendo al centro de integraciones...</div> : <Navigate to={"/error"}/>
+        //     }
+        // </>
+    )
 }
 export default HomePage;

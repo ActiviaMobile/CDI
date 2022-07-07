@@ -1,4 +1,92 @@
-.stepContainer{
+.page{
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 85vh;
+    width: 100vw;
+}
+.formContainer{
+    display: flex;
+    margin-top: 10vh;
+}
+.form{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 60vh;
+    width: 400px;
+    padding-left: 50px;
+}
+input[type="text"] {
+    font-family: inherit;
+    background-color: #F1F1F2;
+    color: #000;
+    border-radius: 10px;
+    height: 15px;
+    width: 270px;
+    border-style: none;
+    padding: 10px;
+    outline: none;
+}
+.inputTitle{
+    color: #BBBDBF;
+}
+.combo{
+    border-radius: 10px;
+    height: 35px;
+    width: 270px;
+    background-color: #F1F1F2;
+    border-style: none;
+    outline: none;
+    font-family: inherit;
+    padding: 3px;
+}
+.comboCheckbox{
+    background-color : #F1F1F2 ;
+    height : 150px ; 
+    width : 300px ; 
+    position : absolute;
+    padding: 10px;
+    font-size: 0.85rem;
+}
+.comboContainerCheckbox{
+    height: inherit;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.comboContainerCheckbox::-webkit-scrollbar {
+    display: none;
+}
+.svgBtnNext{
+    cursor: pointer;
+    align-self: center;
+}
+
+.svgBtnPrev{
+    transform: rotate(180deg);
+}
+.svgLogoCDI{
+    top: 125px;
+    position: absolute;
+    transform: scale(3.5)
+}
+
+.svgWzd {
+    visibility: visible;
+    margin-left: 120px;
+    transform: scale(1.7)
+}
+
+@media (max-width: 1000px) {
+    .svgWzd {
+        visibility: hidden;
+    }
 }

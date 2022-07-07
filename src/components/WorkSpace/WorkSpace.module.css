@@ -1,0 +1,18 @@
+.workSpace {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 92vh;
+    width: 82vw;
+}
+
+#shadow{
+    transform: scaleX(1);
+}
+
+#label{
+    color:  #BBBDBF;
+    font-size: 0.8rem;
+    align-self: center;
+    margin-bottom: 20px;
+}

@@ -1,17 +1,20 @@
-import { useEffect } from "react";
-import { SideMenu , Main , Header } from "../index";
-import styles from "../../pages/HomePage/HomePage.module.css";
+import { SideMenu , WorkSpace , Header } from "../index";
+import styles from "./Dashboard.module.css";
+import { MenuProvider } from "../../context/menuContext";
+import HorizontalShadow from "../SvgComponents/HorizontalShadow";
 
 const Dashboard = ({display}) => {
-    // const [display , setDisplay] = useState(null)
+
     return (
-        <div className={styles.pageRow}>
-            <SideMenu />
-            <div className={styles.pageColumn}>
+        <MenuProvider>
+            <div className={styles.container}>
                 <Header/>
-                <Main display={display}/>
+                <div className={styles.childContainer}>
+                    <SideMenu />
+                    <WorkSpace display={display}/>
+                </div>
             </div>
-        </div>
+        </MenuProvider>
     )
 }
 

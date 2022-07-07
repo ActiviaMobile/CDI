@@ -2,12 +2,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
-    height: 10%;
-    width: 80vw;
-    border-bottom: 1px solid;
-    border-right: 1px solid;
-    border-bottom-right-radius: 15px;
+    height: 8vh;
+    width: 100vw;
+}
+
+#logo{
+    transform: scale(0.4)
+}
+
+#label{
+    font-size: 1.3rem;
     padding-left: 30px;
-    padding-right: 30px;
 }

@@ -2,7 +2,7 @@
     "name": "my-app",
     "version": "0.1.0",
     "private": true,
-    "homepage": ".",
+    "homepage": "",
     "dependencies": {
         "-": "0.0.1",
         "@emotion/react": "^11.7.1",
@@ -23,6 +23,7 @@
         "react-scripts": "^5.0.1",
         "react-top-loading-bar": "^2.1.0",
         "react-xml-parser": "^1.1.8",
+        "redux": "^4.2.0",
         "save-dev": "0.0.1-security",
         "utf8": "^3.0.0",
         "web-vitals": "^2.1.2"

@@ -1,4 +1,4 @@
-.menuItemContainer {
+.container {
     width: 100%;
 }
 
@@ -7,14 +7,13 @@
     border: none;
     text-decoration: none;
     color: white;
-    width: 50%;
+    width: 100%;
     height: 50px;
     display: flex;
     align-items: center;
-    margin: 0 auto;
+    padding-left: 17%;
 }
 
-.menuItemContainer:hover {
+.container:hover {
     background-color: rgb(9, 123, 189);
-    border-radius: 15px;
 }

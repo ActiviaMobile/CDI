@@ -1,7 +1,7 @@
 import * as React from "react"
 
 const Logo = (props) => (
-  <svg
+  <svg viewBox="0 0 150 150"
     xmlns="http://www.w3.org/2000/svg"
     width={230.5}
     height={58}

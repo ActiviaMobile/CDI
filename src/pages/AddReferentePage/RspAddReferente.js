@@ -1,9 +1,4 @@
 
-
-const RspAddReferente = ({res}) => {
-    return(
-        <div>{res === '0' ? 'referente guardado on exito' : 'error al guardar referente'}</div>
-    )
-}
+const RspAddReferente = ({res}) => <div>{res === '0' ? 'referente guardado on exito' : 'error al guardar referente'}</div>
 
 export default RspAddReferente

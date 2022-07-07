@@ -1,0 +1,23 @@
+.barTitles{
+    width : 80vw;
+    display : flex;
+    justify-content : space-between;
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+}
+.bar{
+    width: 80vw;
+    height: 12px;
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.step{
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color:  #8BC53F;
+    position: absolute;
+}

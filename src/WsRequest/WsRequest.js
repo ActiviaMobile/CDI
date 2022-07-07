@@ -1,6 +1,5 @@
 
-export const getTokenRequest = async (handleRef , handleRsp,handleError,passport,setToken) => {
-    console.log('preparando conexion')
+export const getTokenRequest = async ( handleRsp,handleError,passport,setToken ) => {
     var XMLParser = require('react-xml-parser');
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open('POST', 'http://172.16.1.6:8088/HomologacionWebsiteServices.asmx', true);
@@ -14,19 +13,13 @@ export const getTokenRequest = async (handleRef , handleRsp,handleError,passport
         '</tokenUsuarioGet>' +
         '</soap:Body>' +
         '</soap:Envelope>';
-    console.log(sr)
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4) {
-            console.log('conexion terminada')
-            
             if (xmlhttp.status === 200) {
                 var xml = new XMLParser().parseFromString(xmlhttp.responseText);
                 var rsp = xml.getElementsByTagName('tokenUsuarioGetResult');
-                wsRequest(handleRef,handleRsp,handleError,{'tokenUsuario' : rsp[0].value},'UsuarioGetByToken')
-            } else if (xmlhttp.status === 500) {
-                console.log('error')
-                handleError()
-            }else {
+                wsRequest(handleRsp,handleError,{'tokenUsuario' : rsp[0].value},'UsuarioGetByToken')
+            } else {
                 handleError()
             }
         }
@@ -37,11 +30,11 @@ export const getTokenRequest = async (handleRef , handleRsp,handleError,passport
 
 }
 
-export const wsRequest = (handleRef,handleRsp, handleError ,parameters, method) => {
-    handleRef(true)
+export const wsRequest = async ( handleRsp , handleError , parameters, method ) => {
+
     var xmlTag = ''
     Object.keys(parameters).map(key => xmlTag += `<${key}>` + parameters[key]+ `</${key}>`)
-
+    
     var XMLParser = require('react-xml-parser');
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open('POST', 'http://172.16.1.6:8088/HomologacionWebsiteServices.asmx', true);
@@ -54,19 +47,16 @@ export const wsRequest = (handleRef,handleRsp, handleError ,parameters, method) 
         xmlTag +
         `</${method}>` +
         '</soap:Body>' +
-        '</soap:Envelope>'
-    console.log(sr)
-    xmlhttp.onreadystatechange = function() {
+        '</soap:Envelope>';
+  
+    xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4) {  
             if (xmlhttp.status === 200) {
                 var xml = new XMLParser().parseFromString(xmlhttp.responseText);
                 var res = method === 'ReferenteDelete' ? xml.getElementsByTagName(`${method}Response`) : xml.getElementsByTagName(`${method}Result`);
-                console.log(res)
-                console.log(res[0].value)
                 handleRsp(res[0].value)
             } else {
-                console.log('error')
-                handleError()
+                handleError(xmlhttp.statusText)
             }
         }
     }
